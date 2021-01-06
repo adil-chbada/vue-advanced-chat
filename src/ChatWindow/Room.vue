@@ -194,7 +194,7 @@
 				</div>
 			</transition>
 
-			<div class="vac-box-footer">
+			<div class="vac-box-footer" v-if="showFooter">
 				<div class="vac-icon-textarea-left" v-if="showAudio && !imageFile">
 					<div class="vac-svg-button" @click="recordAudio">
 						<slot
@@ -383,6 +383,7 @@ export default {
 		showEmojis: { type: Boolean, required: true },
 		showReactionEmojis: { type: Boolean, required: true },
 		showNewMessagesDivider: { type: Boolean, required: true },
+		showFooter: { type: Boolean, required: true },
 		acceptedFiles: { type: String, required: true },
 		textFormatting: { type: Boolean, required: true },
 		loadingRooms: { type: Boolean, required: true },
@@ -409,7 +410,8 @@ export default {
 			newMessages: [],
 			recorderStream: {},
 			recorder: {},
-			recordedChunks: []
+			recordedChunks: [],
+			keepKeyboardOpen: false
 		}
 	},
 
@@ -426,6 +428,16 @@ export default {
 				}
 			}
 		})
+
+		if (detectMobile()) {
+			this.$refs['roomTextarea'].addEventListener('blur', () =>
+				setTimeout(() => (this.keepKeyboardOpen = false), 0)
+			)
+			this.$refs['roomTextarea'].addEventListener(
+				'click',
+				() => (this.keepKeyboardOpen = true)
+			)
+		}
 
 		this.$refs.scrollContainer.addEventListener('scroll', e => {
 			this.hideOptions = true
@@ -637,6 +649,7 @@ export default {
 			this.imageDimensions = null
 			this.imageFile = null
 			this.emojiOpened = false
+			this.preventKeyboardFromClosing()
 			setTimeout(() => this.focusTextarea(disableMobileFocus), 0)
 		},
 		resetImageFile() {
@@ -658,6 +671,9 @@ export default {
 		},
 		isMessageEmpty() {
 			return !this.file && !this.message.trim()
+		},
+		preventKeyboardFromClosing() {
+			if (this.keepKeyboardOpen) this.$refs['roomTextarea'].focus()
 		},
 		sendMessage() {
 			if (!this.file && !this.message.trim()) return
@@ -725,6 +741,7 @@ export default {
 			element.scrollTo({ top: element.scrollHeight, behavior: 'smooth' })
 		},
 		onChangeInput() {
+			this.keepKeyboardOpen = true
 			this.resizeTextarea()
 			this.$emit('typing-message', this.message)
 		},
