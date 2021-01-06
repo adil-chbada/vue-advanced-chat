@@ -53,6 +53,11 @@
 									{{ userStatus }}
 								</div>
 							</div>
+							<slot
+								name="after-room-name"
+								v-bind="{ room, typingUsers, userStatus }"
+							>
+							</slot>
 						</slot>
 					</div>
 					<slot v-if="room.roomId" name="room-options">
