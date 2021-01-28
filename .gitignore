@@ -2,7 +2,8 @@
 node_modules
 package-lock.json
 /types
-
+.git
+.github
 # local env files
 .env.local
 .env.*.local

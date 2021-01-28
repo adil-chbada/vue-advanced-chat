@@ -91,9 +91,9 @@
 							<div
 								v-if="
 									room.lastMessage &&
-										!room.lastMessage.deleted &&
-										room.lastMessage.file &&
-										room.lastMessage.file.audio
+									!room.lastMessage.deleted &&
+									room.lastMessage.file &&
+									room.lastMessage.file.audio
 								"
 								class="vac-text-ellipsis"
 							>
@@ -295,7 +295,6 @@ export default {
 	flex-flow: column;
 	flex: 0 0 25%;
 	min-width: 260px;
-	max-width: 500px;
 	position: relative;
 	background: var(--chat-sidemenu-bg-color);
 	height: 100%;

@@ -23,7 +23,7 @@
 					<slot name="deleted-icon" v-bind="{ deleted }">
 						<svg-icon v-if="deleted" name="deleted" class="vac-icon-deleted" />
 					</slot>
-					{{ message.value }}
+					<span>{{ message.value }}</span>
 				</component>
 			</template>
 		</div>

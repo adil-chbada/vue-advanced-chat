@@ -93,73 +93,71 @@
 			</slot>
 		</div>
 		<div ref="scrollContainer" class="vac-container-scroll">
-      <v-sheet style="position: relative;overflow:hidden">
-        <div>
-          <loader :show="loadingMessages"></loader>
-          <div class="vac-messages-container">
-            <div :class="{ 'vac-messages-hidden': loadingMessages }">
-              <transition name="vac-fade-message">
-                <div class="vac-text-started" v-if="showNoMessages">
-                  <slot name="messages-empty">
-                    {{ textMessages.MESSAGES_EMPTY }}
-                  </slot>
-                </div>
-                <div class="vac-text-started" v-if="showMessagesStarted">
-                  {{ textMessages.CONVERSATION_STARTED }} {{ messages[0].date }}
-                </div>
-              </transition>
-              <transition name="vac-fade-message">
-                <infinite-loading
-                  v-if="messages.length"
-                  spinner="spiral"
-                  direction="top"
-                  @infinite="loadMoreMessages"
-                >
-                  <div slot="spinner">
-                    <loader :show="true" :infinite="true"></loader>
-                  </div>
-                  <div slot="no-results"></div>
-                  <div slot="no-more"></div>
-                </infinite-loading>
-              </transition>
-              <transition-group name="vac-fade-message">
-                <div v-for="(message, i) in messages" :key="message._id">
-                  <message
-                    :current-user-id="currentUserId"
-                    :message="message"
-                    :index="i"
-                    :messages="messages"
-                    :edited-message="editedMessage"
-                    :message-actions="messageActions"
-                    :room-users="room.users"
-                    :text-messages="textMessages"
-                    :room-footer-ref="$refs.roomFooter"
-                    :new-messages="newMessages"
-                    :show-reaction-emojis="showReactionEmojis"
-                    :show-new-messages-divider="showNewMessagesDivider"
-                    :text-formatting="textFormatting"
-                    :emojis-list="emojisList"
-                    :hide-options="hideOptions"
-                    @message-action-handler="messageActionHandler"
-                    @open-file="openFile"
-                    @add-new-message="addNewMessage"
-                    @send-message-reaction="sendMessageReaction"
-                    @hide-options="hideOptions = $event"
-                  >
-                    <template
-                      v-for="(index, name) in $scopedSlots"
-                      v-slot:[name]="data"
-                    >
-                      <slot :name="name" v-bind="data"></slot>
-                    </template>
-                  </message>
-                </div>
-              </transition-group>
-            </div>
-          </div>
-        </div>
-        <slot name="room-sidebar">   </slot>
-      </v-sheet>
+			<div>
+				<loader :show="loadingMessages"></loader>
+				<div class="vac-messages-container">
+					<div :class="{ 'vac-messages-hidden': loadingMessages }">
+						<transition name="vac-fade-message">
+							<div class="vac-text-started" v-if="showNoMessages">
+								<slot name="messages-empty">
+									{{ textMessages.MESSAGES_EMPTY }}
+								</slot>
+							</div>
+							<div class="vac-text-started" v-if="showMessagesStarted">
+								{{ textMessages.CONVERSATION_STARTED }} {{ messages[0].date }}
+							</div>
+						</transition>
+						<transition name="vac-fade-message">
+							<infinite-loading
+								v-if="messages.length"
+								spinner="spiral"
+								direction="top"
+								@infinite="loadMoreMessages"
+							>
+								<div slot="spinner">
+									<loader :show="true" :infinite="true"></loader>
+								</div>
+								<div slot="no-results"></div>
+								<div slot="no-more"></div>
+							</infinite-loading>
+						</transition>
+						<transition-group name="vac-fade-message">
+							<div v-for="(message, i) in messages" :key="message._id">
+								<message
+									:current-user-id="currentUserId"
+									:message="message"
+									:index="i"
+									:messages="messages"
+									:edited-message="editedMessage"
+									:message-actions="messageActions"
+									:room-users="room.users"
+									:text-messages="textMessages"
+									:room-footer-ref="$refs.roomFooter"
+									:new-messages="newMessages"
+									:show-reaction-emojis="showReactionEmojis"
+									:show-new-messages-divider="showNewMessagesDivider"
+									:text-formatting="textFormatting"
+									:emojis-list="emojisList"
+									:hide-options="hideOptions"
+									@message-action-handler="messageActionHandler"
+									@open-file="openFile"
+									@add-new-message="addNewMessage"
+									@send-message-reaction="sendMessageReaction"
+									@hide-options="hideOptions = $event"
+								>
+									<template
+										v-for="(index, name) in $scopedSlots"
+										v-slot:[name]="data"
+									>
+										<slot :name="name" v-bind="data"></slot>
+									</template>
+								</message>
+							</div>
+						</transition-group>
+					</div>
+				</div>
+			</div>
+			<slot name="room-sidebar"> </slot>
 		</div>
 		<div v-if="!loadingMessages">
 			<transition name="vac-bounce">
@@ -849,7 +847,7 @@ export default {
 	align-items: center;
 	height: 64px;
 	width: 100%;
-	z-index: 10;
+	z-index: 0;
 	margin-right: 1px;
 	background: var(--chat-header-bg-color);
 	border-top-right-radius: var(--chat-container-border-radius);
@@ -946,7 +944,7 @@ export default {
 .vac-room-footer {
 	width: calc(100% - 1px);
 	border-bottom-right-radius: 4px;
-	z-index: 10;
+	z-index: 0;
 }
 
 .vac-box-footer {

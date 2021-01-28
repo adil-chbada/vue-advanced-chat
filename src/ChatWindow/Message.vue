@@ -159,6 +159,9 @@
 									<svg-icon name="pencil" />
 								</slot>
 							</div>
+							<span style="float: left">
+								<v-icon x-small color="red">mdi-whatsapp</v-icon>
+							</span>
 							<span>{{ message.timestamp }}</span>
 							<span v-if="isCheckmarkVisible">
 								<slot name="checkmark-icon" v-bind="{ message }">

@@ -1,71 +1,174 @@
 <template>
 	<div class="vac-card-window" :style="[{ height }, cssVars]">
 		<div class="vac-chat-container">
-			<rooms-list
-				v-if="!singleRoom"
-				:current-user-id="currentUserId"
-				:rooms="orderedRooms"
-				:loading-rooms="loadingRooms"
-				:rooms-loaded="roomsLoaded"
-				:room="room"
-				:text-messages="t"
-				:show-add-room="showAddRoom"
-				:show-rooms-list="showRoomsList"
-				:text-formatting="textFormatting"
-				:is-mobile="isMobile"
-				@fetch-room="fetchRoom"
-				@fetch-more-rooms="fetchMoreRooms"
-				@loading-more-rooms="loadingMoreRooms = $event"
-				@add-room="addRoom"
-			>
-				<template v-for="(index, name) in $scopedSlots" v-slot:[name]="data">
-					<slot :name="name" v-bind="data"></slot>
-				</template>
-			</rooms-list>
-
-			<room
-				:current-user-id="currentUserId"
-				:rooms="rooms"
-				:room-id="room.roomId || ''"
-				:load-first-room="loadFirstRoom"
-				:messages="messages"
-				:room-message="roomMessage"
-				:messages-loaded="messagesLoaded"
-				:menu-actions="menuActions"
-				:message-actions="messageActions"
-				:show-send-icon="showSendIcon"
-				:show-files="showFiles"
-				:show-audio="showAudio"
-				:show-emojis="showEmojis"
-				:show-reaction-emojis="showReactionEmojis"
-				:show-new-messages-divider="showNewMessagesDivider"
-				:show-footer="showFooter"
-				:text-messages="t"
-				:single-room="singleRoom"
-				:show-rooms-list="showRoomsList"
-				:text-formatting="textFormatting"
-				:is-mobile="isMobile"
-				:loading-rooms="loadingRooms"
-				:room-info="$listeners.roomInfo"
-				:textarea-action="$listeners.textareaActionHandler"
-				:accepted-files="acceptedFiles"
-				@toggle-rooms-list="toggleRoomsList"
-				@room-info="roomInfo"
-				@fetch-messages="fetchMessages"
-				@send-message="sendMessage"
-				@edit-message="editMessage"
-				@delete-message="deleteMessage"
-				@open-file="openFile"
-				@menu-action-handler="menuActionHandler"
-				@message-action-handler="messageActionHandler"
-				@send-message-reaction="sendMessageReaction"
-				@typing-message="typingMessage"
-				@textarea-action-handler="textareaActionHandler"
-			>
-				<template v-for="(index, name) in $scopedSlots" v-slot:[name]="data">
-					<slot :name="name" v-bind="data"></slot>
-				</template>
-			</room>
+			<!-- <splitpanes class="default-theme">
+				<pane v-if="showRoomsList" size="30" :min-size="size">
+					<rooms-list
+						v-if="!singleRoom"
+						:current-user-id="currentUserId"
+						:rooms="orderedRooms"
+						:loading-rooms="loadingRooms"
+						:rooms-loaded="roomsLoaded"
+						:room="room"
+						:text-messages="t"
+						:show-add-room="showAddRoom"
+						:show-rooms-list="showRoomsList"
+						:text-formatting="textFormatting"
+						:is-mobile="isMobile"
+						@fetch-room="fetchRoom"
+						@fetch-more-rooms="fetchMoreRooms"
+						@loading-more-rooms="loadingMoreRooms = $event"
+						@add-room="addRoom"
+					>
+						<template
+							v-for="(index, name) in $scopedSlots"
+							v-slot:[name]="data"
+						>
+							<slot :name="name" v-bind="data"></slot>
+						</template>
+					</rooms-list>
+				</pane>
+				<pane max-size="300" v-if="!showRoomsList || !isMobile">
+					<room
+						:current-user-id="currentUserId"
+						:rooms="rooms"
+						:room-id="room.roomId || ''"
+						:load-first-room="loadFirstRoom"
+						:messages="messages"
+						:room-message="roomMessage"
+						:messages-loaded="messagesLoaded"
+						:menu-actions="menuActions"
+						:message-actions="messageActions"
+						:show-send-icon="showSendIcon"
+						:show-files="showFiles"
+						:show-audio="showAudio"
+						:show-emojis="showEmojis"
+						:show-reaction-emojis="showReactionEmojis"
+						:show-new-messages-divider="showNewMessagesDivider"
+						:show-footer="showFooter"
+						:text-messages="t"
+						:single-room="singleRoom"
+						:show-rooms-list="showRoomsList"
+						:text-formatting="textFormatting"
+						:is-mobile="isMobile"
+						:loading-rooms="loadingRooms"
+						:room-info="$listeners.roomInfo"
+						:textarea-action="$listeners.textareaActionHandler"
+						:accepted-files="acceptedFiles"
+						@toggle-rooms-list="toggleRoomsList"
+						@room-info="roomInfo"
+						@fetch-messages="fetchMessages"
+						@send-message="sendMessage"
+						@edit-message="editMessage"
+						@delete-message="deleteMessage"
+						@open-file="openFile"
+						@menu-action-handler="menuActionHandler"
+						@message-action-handler="messageActionHandler"
+						@send-message-reaction="sendMessageReaction"
+						@typing-message="typingMessage"
+						@textarea-action-handler="textareaActionHandler"
+					>
+						<template
+							v-for="(index, name) in $scopedSlots"
+							v-slot:[name]="data"
+						>
+							<slot :name="name" v-bind="data"></slot>
+						</template>
+					</room>
+				</pane>
+				<pane v-if="rightmenu">
+					<sidemenu :room="room" />
+				</pane>
+			</splitpanes> -->
+			<multipane class="custom-resizer" layout="vertical">
+				<div class="pane" :style="{ width: '100%' }" v-if="showRoomsList">
+					<rooms-list
+						v-if="!singleRoom"
+						:current-user-id="currentUserId"
+						:rooms="orderedRooms"
+						:loading-rooms="loadingRooms"
+						:rooms-loaded="roomsLoaded"
+						:room="room"
+						:text-messages="t"
+						:show-add-room="showAddRoom"
+						:show-rooms-list="showRoomsList"
+						:text-formatting="textFormatting"
+						:is-mobile="isMobile"
+						@fetch-room="fetchRoom"
+						@fetch-more-rooms="fetchMoreRooms"
+						@loading-more-rooms="loadingMoreRooms = $event"
+						@add-room="addRoom"
+					>
+						<template
+							v-for="(index, name) in $scopedSlots"
+							v-slot:[name]="data"
+						>
+							<slot :name="name" v-bind="data"></slot>
+						</template>
+					</rooms-list>
+				</div>
+				<multipane-resizer></multipane-resizer>
+				<div
+					class="pane"
+					:style="{ width: '100%', flexGrow: 1 }"
+					v-if="!showRoomsList || !isMobile"
+				>
+					<room
+						:current-user-id="currentUserId"
+						:rooms="rooms"
+						:room-id="room.roomId || ''"
+						:load-first-room="loadFirstRoom"
+						:messages="messages"
+						:room-message="roomMessage"
+						:messages-loaded="messagesLoaded"
+						:menu-actions="menuActions"
+						:message-actions="messageActions"
+						:show-send-icon="showSendIcon"
+						:show-files="showFiles"
+						:show-audio="showAudio"
+						:show-emojis="showEmojis"
+						:show-reaction-emojis="showReactionEmojis"
+						:show-new-messages-divider="showNewMessagesDivider"
+						:show-footer="showFooter"
+						:text-messages="t"
+						:single-room="singleRoom"
+						:show-rooms-list="showRoomsList"
+						:text-formatting="textFormatting"
+						:is-mobile="isMobile"
+						:loading-rooms="loadingRooms"
+						:room-info="$listeners.roomInfo"
+						:textarea-action="$listeners.textareaActionHandler"
+						:accepted-files="acceptedFiles"
+						@toggle-rooms-list="toggleRoomsList"
+						@room-info="roomInfo"
+						@fetch-messages="fetchMessages"
+						@send-message="sendMessage"
+						@edit-message="editMessage"
+						@delete-message="deleteMessage"
+						@open-file="openFile"
+						@menu-action-handler="menuActionHandler"
+						@message-action-handler="messageActionHandler"
+						@send-message-reaction="sendMessageReaction"
+						@typing-message="typingMessage"
+						@textarea-action-handler="textareaActionHandler"
+					>
+						<template
+							v-for="(index, name) in $scopedSlots"
+							v-slot:[name]="data"
+						>
+							<slot :name="name" v-bind="data"></slot>
+						</template>
+					</room>
+				</div>
+				<multipane-resizer></multipane-resizer>
+				<div
+					class="pane"
+					:style="{ width: '300px', flexGrow: 1, overflowY: 'scroll' }"
+					v-if="rightmenu"
+				>
+					<sidemenu :room="room" />
+				</div>
+			</multipane>
 		</div>
 	</div>
 </template>
@@ -73,16 +176,24 @@
 <script>
 import RoomsList from './RoomsList'
 import Room from './Room'
+import { Multipane, MultipaneResizer } from 'vue-multipane'
 
 import locales from '../locales'
 import { defaultThemeStyles, cssThemeVars } from '../themes'
 const { roomsValid, partcipantsValid } = require('../utils/roomValidation')
-
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
+import Sidemenu from '../../../../views/pages/chats/chatComponents/sidemenu.vue'
 export default {
 	name: 'chat-container',
 	components: {
 		RoomsList,
-		Room
+		Multipane,
+		MultipaneResizer,
+		Room,
+		Splitpanes,
+		Pane,
+		Sidemenu
 	},
 
 	props: {
@@ -91,6 +202,8 @@ export default {
 		styles: { type: Object, default: () => ({}) },
 		responsiveBreakpoint: { type: Number, default: 900 },
 		singleRoom: { type: Boolean, default: false },
+		rightmenu: { type: Boolean, default: false },
+
 		textMessages: { type: Object, default: null },
 		currentUserId: { type: [String, Number], default: '' },
 		rooms: { type: Array, default: () => [] },
@@ -128,11 +241,15 @@ export default {
 			room: {},
 			loadingMoreRooms: false,
 			showRoomsList: true,
-			isMobile: false
+			isMobile: false,
+			size: '30'
 		}
 	},
 
 	watch: {
+		isMobile(val) {
+			val ? (this.size = 1000) : (this.size = 30)
+		},
 		rooms: {
 			immediate: true,
 			handler(newVal, oldVal) {
@@ -306,7 +423,40 @@ export default {
 
 <style lang="scss">
 @import '../styles/index.scss';
+.custom-resizer {
+	width: 100%;
+}
+.custom-resizer > .pane {
+	text-align: left;
 
+	overflow: hidden;
+	background: #eee;
+	border: 1px solid #ccc;
+}
+
+.custom-resizer > .multipane-resizer {
+	margin: 0;
+	left: 0;
+	position: relative;
+	&:before {
+		display: block;
+		content: '';
+		width: 3px;
+		height: 40px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -20px;
+		margin-left: -1.5px;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+	}
+	&:hover {
+		&:before {
+			border-color: #999;
+		}
+	}
+}
 .vac-card-window {
 	width: 100%;
 	display: block;
