@@ -41,6 +41,9 @@
 						</div>
 					</slot>
 				</div>
+        <slot v-if="room.roomId" name="before-room-options" v-bind="{ room, typingUsers, userStatus }">
+
+        </slot>
 				<slot v-if="room.roomId" name="room-options">
 					<div
 						v-if="menuActions.length"
@@ -67,6 +70,9 @@
 						</div>
 					</transition>
 				</slot>
+        <slot v-if="room.roomId" name="after-room-options" v-bind="{ room, typingUsers, userStatus }">
+
+        </slot>
 			</div>
 		</slot>
 	</div>
