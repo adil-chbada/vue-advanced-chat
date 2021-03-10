@@ -308,6 +308,7 @@
 						@change="onFileChange($event.target.files)"
 					/>
 
+          <slot name="before-send-btn" v-bind="{ room }"></slot>
 					<div
 						v-if="showSendIcon"
 						class="vac-svg-button"
@@ -318,6 +319,7 @@
 							<svg-icon name="send" :param="isMessageEmpty ? 'disabled' : ''" />
 						</slot>
 					</div>
+          <slot name="after-send-btn" v-bind="{ room }"></slot>
 				</div>
 			</div>
 		</div>
