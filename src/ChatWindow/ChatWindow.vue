@@ -1,6 +1,7 @@
 <template>
 	<div class="vac-card-window" :style="[{ height }, cssVars]">
-		<div class="vac-chat-container">
+    <div class="vac-chat-container">
+      <slot name="before-chat-container" v-bind="{ room }">  </slot>
 			<rooms-list
 				v-if="!singleRoom"
 				:current-user-id="currentUserId"
@@ -71,6 +72,7 @@
 					<slot :name="name" v-bind="data" />
 				</template>
 			</room>
+      <slot name="after-chat-container" v-bind="{ room }">  </slot>
 		</div>
 	</div>
 </template>
