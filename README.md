@@ -12,6 +12,7 @@
 
 ## Features
 
+- Vue, Angular & React compatibility
 - Customizeable realtime chat messaging
 - Backend agnostic
 - Images, videos, files, voice messages & emojis
@@ -61,7 +62,7 @@ You will get a fully working chat application for web and mobile:
 - [Events API](#events-api)
 - [Named Slots](#named-slots)
 - [Using with Firestore](#using-with-firestore)
-- [Use as a Web Component](#use-as-a-web-component)
+- [Use as a Web Component with React and Angular](#use-as-a-web-component-with-react-and-angular)
 
 <br>
 
@@ -80,6 +81,8 @@ If you want to send mp3 audio messages, you may need to install `lamejs` inside 
 ```bash
 npm install lamejs --save
 ```
+
+[Installation with React & Angular](#use-as-a-web-component)
 
 ## Usage
 
@@ -472,7 +475,8 @@ messages="[
       type: 'png',
       audio: true,
       duration: 14.4,
-      url: 'https://firebasestorage.googleapis.com/...'
+      url: 'https://firebasestorage.googleapis.com/...',
+      preview: 'data:image/png;base64,iVBORw0KGgoAA...'
     },
     reactions: {
       wink: [
@@ -697,39 +701,65 @@ messages: {
 
 <br>
 
-## Use as a Web Component
+## Use as a Web Component with React and Angular
 
-### Clone vue-advance-chat project
+### Install vue-advance-chat component
 
-```bash
-git clone https://github.com/antoine92190/vue-advanced-chat.git
-```
+- Follow [Installation](#installation) steps
 
-### Build it as a Web Component
+### Install Vue.js
 
 ```bash
-npm i && npm run build:wc
+# Using npm
+npm install --save vue
+
+# Using yarn
+yarn add --save vue
 ```
 
-### Add Vue.js to your application
+#### Angular Setup
 
-```html
-<!-- index.html -->
-<script src="https://unpkg.com/vue"></script>
+```json
+// angular.json
+
+"build": {
+  "scripts": [
+    "./node_modules/vue/dist/vue.min.js",
+    "./node_modules/vue-advanced-chat/dist/vue-advanced-chat.min.js"
+  ]
+}
 ```
-
-### Import the built minified component in your application
-
-#### Add vue-advanced-chat.min.js in your application files
-
-```
-vue-advanced-chat/dist/vue-advanced-chat.min.js
-```
-
-#### Import the vue-advanced-chat.min.js file you just added
 
 ```javascript
-import './vue-advanced-chat.min.js'
+// page.module.ts
+
+@NgModule({
+  ...
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+```
+
+```html
+<!-- page.html -->
+
+<vue-advanced-chat
+	height="100vh"
+	[currentUserId]="currentUserId"
+	[roomId]="roomId"
+	[rooms]="rooms"
+	[roomsLoaded]="true"
+	[messages]="messages"
+	[messagesLoaded]="messagesLoaded"
+	[showFiles]="true"
+	[showEmojis]="true"
+	[textFormatting]="true"
+	[showReactionEmojis]="true"
+	[showFooter]="true"
+	(fetch-messages)="fetchMessages($event.detail[0])"
+	(send-message)="sendMessage($event.detail[0])"
+	...
+>
+</vue-advanced-chat>
 ```
 
 <br>

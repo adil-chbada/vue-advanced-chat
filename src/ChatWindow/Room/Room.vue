@@ -3,12 +3,7 @@
 		v-show="(isMobile && !showRoomsList) || !isMobile || singleRoom"
 		class="vac-col-messages"
 	>
-		<slot
-			v-if="
-				(!rooms.length && !loadingRooms) || (!room.roomId && !loadFirstRoom)
-			"
-			name="no-room-selected"
-		>
+		<slot v-if="showNoRoom" name="no-room-selected">
 			<div class="vac-container-center vac-room-empty">
 				<div>{{ textMessages.ROOM_EMPTY }}</div>
 			</div>
@@ -439,6 +434,16 @@ export default {
 				!this.loadingRooms
 			)
 		},
+		showNoRoom() {
+			const noRoomSelected =
+				(!this.rooms.length && !this.loadingRooms) ||
+				(!this.room.roomId && !this.loadFirstRoom)
+
+			if (noRoomSelected) {
+				this.loadingMessages = false /* eslint-disable-line vue/no-side-effects-in-computed-properties */
+			}
+			return noRoomSelected
+		},
 		showMessagesStarted() {
 			return this.messages.length && this.messagesLoaded
 		},
@@ -538,7 +543,7 @@ export default {
 			this.loadingMessages = true
 			this.scrollIcon = false
 			this.scrollMessagesCount = 0
-			this.resetMessage(true)
+			this.resetMessage(true, null, true)
 
 			if (this.roomMessage) {
 				this.message = this.roomMessage
@@ -562,13 +567,12 @@ export default {
 				}
 			)
 		},
-		onMessageAdded({ message, index }) {
+		onMessageAdded({ message, index, ref }) {
 			this.newMessages = []
 
 			if (index !== this.messages.length - 1) return
 
-			const messageHeight = document.getElementById(message._id).offsetHeight
-			const autoScrollOffset = messageHeight + 60
+			const autoScrollOffset = ref.offsetHeight + 60
 
 			setTimeout(() => {
 				if (
@@ -726,8 +730,14 @@ export default {
 			else if (this.filteredUsersTag.length) this.filteredUsersTag = []
 			else this.resetMessage()
 		},
-		resetMessage(disableMobileFocus = null, editFile = null) {
-			this.$emit('typing-message', null)
+		resetMessage(
+			disableMobileFocus = false,
+			editFile = false,
+			initRoom = false
+		) {
+			if (!initRoom) {
+				this.$emit('typing-message', null)
+			}
 
 			if (editFile) {
 				this.file = null
