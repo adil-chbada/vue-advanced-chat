@@ -115,6 +115,7 @@
 			</transition>
 		</div>
 		<div
+        v-if="room.status"
 			v-show="Object.keys(room).length && showFooter"
 			ref="roomFooter"
 			class="vac-room-footer"
