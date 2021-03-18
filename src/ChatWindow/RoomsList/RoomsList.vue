@@ -32,7 +32,7 @@
 				v-for="fRoom in filteredRooms"
 				:id="fRoom.roomId"
 				:key="fRoom.roomId"
-				class="vac-room-item"
+				class="vac-room-item elevation-3"
 				:class="{ 'vac-room-selected': selectedRoomId === fRoom.roomId }"
 				@click="openRoom(fRoom)"
 			>
@@ -210,28 +210,28 @@ export default {
 }
 
 .vac-room-item {
-	border-radius: 8px;
+	border-radius:6px;
 	align-items: center;
 	display: flex;
 	flex: 1 1 100%;
-	margin-bottom: 5px;
+	margin-bottom: 7px;
 	padding: 0 14px;
 	position: relative;
 	min-height: 71px;
 
 	&:hover {
-		background: var(--chat-sidemenu-bg-color-hover);
+		background: #eee;
 		transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 	}
 
 	&:not(:hover) {
-		transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 	}
 }
 
 .vac-room-selected {
 	color: var(--chat-sidemenu-color-active) !important;
-	background: var(--chat-sidemenu-bg-color-active) !important;
+	background: #eee !important;
 
 	&:hover {
 		background: var(--chat-sidemenu-bg-color-active) !important;
