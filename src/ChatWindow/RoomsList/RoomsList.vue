@@ -28,11 +28,13 @@
 		</div>
 
 		<div v-if="!loadingRooms" class="vac-room-list">
-			<div
+      <transition-group name="list-complete" tag="div">
+
+      <div
 				v-for="fRoom in filteredRooms"
 				:id="fRoom.roomId"
 				:key="fRoom.roomId"
-				class="vac-room-item elevation-3"
+				class="vac-room-item elevation-3 list-complete-item"
 				:class="{ 'vac-room-selected': selectedRoomId === fRoom.roomId }"
 				@click="openRoom(fRoom)"
 			>
@@ -50,6 +52,7 @@
 					</template>
 				</room-content>
 			</div>
+      </transition-group>
 			<transition name="vac-fade-message">
 				<infinite-loading
 					v-if="rooms.length && !loadingRooms"
@@ -172,6 +175,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.list-complete-enter, .list-complete-leave-to
+  /* .list-complete-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+.list-complete-item {
+  transition: all 2s ease-in-out;
+  display: inline-block;
+
+  margin-right: 10px;
+}
 .vac-rooms-container {
 	display: flex;
 	flex-flow: column;
