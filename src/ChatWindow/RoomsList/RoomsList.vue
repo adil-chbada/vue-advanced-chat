@@ -56,6 +56,8 @@
 			<transition name="vac-fade-message">
 				<infinite-loading
 					v-if="rooms.length && !loadingRooms"
+					force-use-infinite-wrapper=".vac-room-list"
+					web-component-name="vue-advanced-chat"
 					spinner="spiral"
 					@infinite="loadMoreRooms"
 				>
@@ -174,22 +176,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-.list-complete-enter, .list-complete-leave-to
-  /* .list-complete-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(100px);
-}
-.list-complete-leave-active {
-  position: absolute;
-}
-.list-complete-item {
-  transition: all 2s ease-in-out;
-  display: inline-block;
-
-  margin-right: 10px;
-}
+<style lang="scss">
 .vac-rooms-container {
 	display: flex;
 	flex-flow: column;
@@ -201,69 +188,69 @@ export default {
 	height: 100%;
 	border-top-left-radius: var(--chat-container-border-radius);
 	border-bottom-left-radius: var(--chat-container-border-radius);
-}
 
-.vac-rooms-container-full {
-	flex: 0 0 100%;
-	max-width: 100%;
-}
-
-.vac-rooms-empty {
-	font-size: 14px;
-	color: #9ca6af;
-	font-style: italic;
-	text-align: center;
-	margin: 40px 0;
-	line-height: 20px;
-	white-space: pre-line;
-}
-
-.vac-room-list {
-	flex: 1;
-	position: relative;
-	max-width: 100%;
-	cursor: pointer;
-	padding: 0 10px 5px;
-	overflow-y: auto;
-}
-
-.vac-room-item {
-	border-radius:6px;
-	align-items: center;
-	display: flex;
-	flex: 1 1 100%;
-	margin-bottom: 7px;
-	padding: 0 14px;
-	position: relative;
-	min-height: 71px;
-
-	&:hover {
-		background: #eee;
-		transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+	&.vac-rooms-container-full {
+		flex: 0 0 100%;
+		max-width: 100%;
 	}
 
-	&:not(:hover) {
-		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+	.vac-rooms-empty {
+		font-size: 14px;
+		color: #9ca6af;
+		font-style: italic;
+		text-align: center;
+		margin: 40px 0;
+		line-height: 20px;
+		white-space: pre-line;
 	}
-}
 
-.vac-room-selected {
-	color: var(--chat-sidemenu-color-active) !important;
-	background: #eee !important;
-
-	&:hover {
-		background: var(--chat-sidemenu-bg-color-active) !important;
-	}
-}
-
-@media only screen and (max-width: 768px) {
 	.vac-room-list {
-		padding: 0 7px 5px;
+		flex: 1;
+		position: relative;
+		max-width: 100%;
+		cursor: pointer;
+		padding: 0 10px 5px;
+		overflow-y: auto;
 	}
 
 	.vac-room-item {
-		min-height: 60px;
-		padding: 0 8px;
+		border-radius: 8px;
+		align-items: center;
+		display: flex;
+		flex: 1 1 100%;
+		margin-bottom: 5px;
+		padding: 0 14px;
+		position: relative;
+		min-height: 71px;
+
+		&:hover {
+			background: var(--chat-sidemenu-bg-color-hover);
+			transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+		}
+
+		&:not(:hover) {
+			transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+		}
+	}
+
+	.vac-room-selected {
+		color: var(--chat-sidemenu-color-active) !important;
+		background: var(--chat-sidemenu-bg-color-active) !important;
+
+		&:hover {
+			background: var(--chat-sidemenu-bg-color-active) !important;
+		}
+	}
+
+	@media only screen and (max-width: 768px) {
+		.vac-room-list {
+			padding: 0 7px 5px;
+		}
+
+		.vac-room-item {
+			min-height: 60px;
+			padding: 0 8px;
+		}
 	}
 }
 </style>

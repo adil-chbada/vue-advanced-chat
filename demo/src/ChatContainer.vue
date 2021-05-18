@@ -338,7 +338,10 @@ export default {
 		fetchMessages({ room, options = {} }) {
 			this.$emit('show-demo-options', false)
 
-			if (options.reset) this.resetMessages()
+			if (options.reset) {
+				this.resetMessages()
+				this.roomId = room.roomId
+			}
 
 			if (this.endMessages && !this.startMessages)
 				return (this.messagesLoaded = true)
@@ -552,7 +555,7 @@ export default {
 				.doc(messageId)
 				.update(newMessage)
 
-			if (file) this.uploadFile({ file, messageId, roomId })
+			if (file?.blob) this.uploadFile({ file, messageId, roomId })
 		},
 
 		async deleteMessage({ message, roomId }) {
