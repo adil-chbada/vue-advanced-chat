@@ -90,7 +90,11 @@ You can import it as a custom component:
 
 ```javascript
 <template>
-  <chat-window :current-user-id="currentUserId" :rooms="rooms" :messages="messages" />
+  <chat-window
+    :current-user-id="currentUserId"
+    :rooms="rooms"
+    :messages="messages"
+  />
 </template>
 
 <script>
@@ -596,6 +600,7 @@ Example:
 | `custom-action-icon`                | Add a custom icon inside the footer                         | -                                   | -                                                                                                                  |  | `rooms-header` | Add a template on top of rooms list (above the search bar) | - | - |
 | `room-list-item`                    | Replace the template of the room list items                 | `room`                              | `room-list-options`                                                                                                |
 | `room-list-options`                 | Replace the template of the list room options               | `room`                              | `room-list-options-icon`                                                                                           |
+| `rooms-header`                       | Replace the content above the search bar                   | -                                   | -                                                                                                                     |
 | `room-header`                       | Replace the template of the room header                     | `room`, `typingUsers`, `userStatus` | `room-options`, `menu-icon`, `toggle-icon`                                                                         |
 | `room-header-avatar`                | Replace the template of the room header avatar              | `room`                              |
 | `room-header-info`                  | Replace the template of the room header text                | `room`, `typingUsers`, `userStatus` |
@@ -743,21 +748,21 @@ yarn add --save vue
 <!-- page.html -->
 
 <vue-advanced-chat
-	height="100vh"
-	[currentUserId]="currentUserId"
-	[roomId]="roomId"
-	[rooms]="rooms"
-	[roomsLoaded]="true"
-	[messages]="messages"
-	[messagesLoaded]="messagesLoaded"
-	[showFiles]="true"
-	[showEmojis]="true"
-	[textFormatting]="true"
-	[showReactionEmojis]="true"
-	[showFooter]="true"
-	(fetch-messages)="fetchMessages($event.detail[0])"
-	(send-message)="sendMessage($event.detail[0])"
-	...
+  height="100vh"
+  [currentUserId]="currentUserId"
+  [roomId]="roomId"
+  [rooms]="rooms"
+  [roomsLoaded]="true"
+  [messages]="messages"
+  [messagesLoaded]="messagesLoaded"
+  [showFiles]="true"
+  [showEmojis]="true"
+  [textFormatting]="true"
+  [showReactionEmojis]="true"
+  [showFooter]="true"
+  (fetch-messages)="fetchMessages($event.detail[0])"
+  (send-message)="sendMessage($event.detail[0])"
+  ...
 >
 </vue-advanced-chat>
 ```
