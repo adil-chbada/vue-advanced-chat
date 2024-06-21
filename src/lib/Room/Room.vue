@@ -8,6 +8,9 @@
 		@dragleave.prevent
 		@touchstart="touchStart"
 	>
+    <div style="position:absolute;right: 10px;top: 70px;z-index: 300">
+      <slot name="right-top-zone" v-bind="{room}" />
+    </div>
 		<slot v-if="showNoRoom" name="no-room-selected">
 			<div class="vac-container-center vac-room-empty">
 				<div>{{ textMessages.ROOM_EMPTY }}</div>

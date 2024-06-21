@@ -69,7 +69,8 @@
 							</div>
 						</slot>
 					</div>
-					<slot v-if="room.roomId" name="room-options">
+          <slot v-if="room.roomId" name="before-room-options" v-bind="{ room, typingUsers, userStatus }" />
+          <slot v-if="room.roomId" name="room-options">
 						<div
 							v-if="menuActions.length"
 							class="vac-svg-button vac-room-options"

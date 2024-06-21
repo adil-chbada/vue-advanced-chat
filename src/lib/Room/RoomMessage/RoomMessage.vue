@@ -42,8 +42,12 @@
             v-if="message.avatar"
 						class="vac-avatar"
 						:style="{ 'background-image': `url('${message.avatar}')` }"
-					/>
-				</slot>
+           >
+          <div style="font-size: 8px;top: 15px;left: 15px;position: relative;background-color: white;border-radius: 7px;width: fit-content;">
+            <slot name="avatar-badge" v-bind="{message}" />
+          </div>
+        </div>
+        </slot>
 				<div
 					v-if="hasSenderUserAvatar && !message.avatar"
 					class="vac-avatar-offset"
@@ -139,7 +143,9 @@
 								{{ progressTime }}
 							</div>
 						</template>
-
+            <div style="float: left;  margin-top: -3px;">
+              <slot name="before-message-time" v-bind="{message}" />
+            </div>
 						<div class="vac-text-timestamp">
 							<div
 								v-if="message.edited && !message.deleted"

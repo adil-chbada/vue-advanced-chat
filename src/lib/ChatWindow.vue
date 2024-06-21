@@ -90,7 +90,8 @@
 					<slot :name="el.slot" v-bind="data" />
 				</template>
 			</room>
-		</div>
+      <slot name="after-chat-container" v-bind="{room}" />
+    </div>
 		<transition name="vac-fade-preview" appear>
 			<media-preview
 				v-if="showMediaPreview"

@@ -167,6 +167,7 @@
 					style="display: none"
 					@change="onFileChange($event.target.files)"
 				/>
+        <slot name="before-send-btn" v-bind="{ room }" />
 
 				<div
 					v-if="showSendIcon"
@@ -181,7 +182,7 @@
 						/>
 					</slot>
 				</div>
-			</div>
+      </div>
 		</div>
 	</div>
 </template>
