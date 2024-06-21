@@ -56,11 +56,11 @@
 </template>
 
 <script>
-import SvgIcon from '../../../../components/SvgIcon/SvgIcon'
-import FormatMessage from '../../../../components/FormatMessage/FormatMessage'
-import ProgressBar from '../../../../components/ProgressBar/ProgressBar'
+import SvgIcon from '../../../../components/SvgIcon/SvgIcon.vue'
+import FormatMessage from '../../../../components/FormatMessage/FormatMessage.vue'
+import ProgressBar from '../../../../components/ProgressBar/ProgressBar.vue'
 
-import MessageFile from './MessageFile/MessageFile'
+import MessageFile from './MessageFile/MessageFile.vue'
 
 import { isImageVideoFile } from '../../../../utils/media-file'
 

@@ -74,10 +74,10 @@
 </template>
 
 <script>
-import Loader from '../../components/Loader/Loader'
+import Loader from '../../components/Loader/Loader.vue'
 
-import RoomsSearch from './RoomsSearch/RoomsSearch'
-import RoomContent from './RoomContent/RoomContent'
+import RoomsSearch from './RoomsSearch/RoomsSearch.vue'
+import RoomContent from './RoomContent/RoomContent.vue'
 
 import filteredItems from '../../utils/filter-items'
 

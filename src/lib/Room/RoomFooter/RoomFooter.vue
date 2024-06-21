@@ -189,14 +189,14 @@
 <script>
 import { Database } from 'emoji-picker-element'
 
-import SvgIcon from '../../../components/SvgIcon/SvgIcon'
-import EmojiPickerContainer from '../../../components/EmojiPickerContainer/EmojiPickerContainer'
+import SvgIcon from '../../../components/SvgIcon/SvgIcon.vue'
+import EmojiPickerContainer from '../../../components/EmojiPickerContainer/EmojiPickerContainer.vue'
 
-import RoomFiles from './RoomFiles/RoomFiles'
-import RoomMessageReply from './RoomMessageReply/RoomMessageReply'
-import RoomUsersTag from './RoomUsersTag/RoomUsersTag'
-import RoomEmojis from './RoomEmojis/RoomEmojis'
-import RoomTemplatesText from './RoomTemplatesText/RoomTemplatesText'
+import RoomFiles from './RoomFiles/RoomFiles.vue'
+import RoomMessageReply from './RoomMessageReply/RoomMessageReply.vue'
+import RoomUsersTag from './RoomUsersTag/RoomUsersTag.vue'
+import RoomEmojis from './RoomEmojis/RoomEmojis.vue'
+import RoomTemplatesText from './RoomTemplatesText/RoomTemplatesText.vue'
 
 import vClickOutside from '../../../utils/on-click-outside'
 import filteredItems from '../../../utils/filter-items'

@@ -169,12 +169,12 @@
 </template>
 
 <script>
-import Loader from '../../components/Loader/Loader'
-import SvgIcon from '../../components/SvgIcon/SvgIcon'
+import Loader from '../../components/Loader/Loader.vue'
+import SvgIcon from '../../components/SvgIcon/SvgIcon.vue'
 
-import RoomHeader from './RoomHeader/RoomHeader'
-import RoomFooter from './RoomFooter/RoomFooter'
-import RoomMessage from './RoomMessage/RoomMessage'
+import RoomHeader from './RoomHeader/RoomHeader.vue'
+import RoomFooter from './RoomFooter/RoomFooter.vue'
+import RoomMessage from './RoomMessage/RoomMessage.vue'
 
 export default {
 	name: 'ChatRoom',

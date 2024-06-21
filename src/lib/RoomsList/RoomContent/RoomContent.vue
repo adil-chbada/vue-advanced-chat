@@ -121,8 +121,8 @@
 </template>
 
 <script>
-import SvgIcon from '../../../components/SvgIcon/SvgIcon'
-import FormatMessage from '../../../components/FormatMessage/FormatMessage'
+import SvgIcon from '../../../components/SvgIcon/SvgIcon.vue'
+import FormatMessage from '../../../components/FormatMessage/FormatMessage.vue'
 
 import vClickOutside from '../../../utils/on-click-outside'
 import typingText from '../../../utils/typing-text'

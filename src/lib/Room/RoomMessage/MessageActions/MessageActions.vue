@@ -89,8 +89,8 @@
 <script>
 import vClickOutside from '../../../../utils/on-click-outside'
 
-import SvgIcon from '../../../../components/SvgIcon/SvgIcon'
-import EmojiPickerContainer from '../../../../components/EmojiPickerContainer/EmojiPickerContainer'
+import SvgIcon from '../../../../components/SvgIcon/SvgIcon.vue'
+import EmojiPickerContainer from '../../../../components/EmojiPickerContainer/EmojiPickerContainer.vue'
 import { findParentBySelector } from '../../../../utils/element-selector'
 
 export default {

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import SvgIcon from '../SvgIcon/SvgIcon'
+import SvgIcon from '../SvgIcon/SvgIcon.vue'
 import { findParentBySelector } from '../../utils/element-selector'
 
 export default {

@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import SvgIcon from '../../../../components/SvgIcon/SvgIcon'
+import SvgIcon from '../../../../components/SvgIcon/SvgIcon.vue'
 
-import AudioControl from './AudioControl/AudioControl'
+import AudioControl from './AudioControl/AudioControl.vue'
 
 export default {
 	name: 'AudioPlayer',

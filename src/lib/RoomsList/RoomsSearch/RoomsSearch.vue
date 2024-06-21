@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import SvgIcon from '../../../components/SvgIcon/SvgIcon'
+import SvgIcon from '../../../components/SvgIcon/SvgIcon.vue'
 
 export default {
 	name: 'RoomsSearch',

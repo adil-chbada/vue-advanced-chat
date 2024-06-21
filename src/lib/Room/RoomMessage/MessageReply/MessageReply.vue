@@ -62,10 +62,10 @@
 </template>
 
 <script>
-import SvgIcon from '../../../../components/SvgIcon/SvgIcon'
-import FormatMessage from '../../../../components/FormatMessage/FormatMessage'
+import SvgIcon from '../../../../components/SvgIcon/SvgIcon.vue'
+import FormatMessage from '../../../../components/FormatMessage/FormatMessage.vue'
 
-import AudioPlayer from '../AudioPlayer/AudioPlayer'
+import AudioPlayer from '../AudioPlayer/AudioPlayer.vue'
 
 import {
 	isAudioFile,

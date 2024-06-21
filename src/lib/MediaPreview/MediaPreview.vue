@@ -31,7 +31,7 @@
 	</div>
 </template>
 <script>
-import SvgIcon from '../../components/SvgIcon/SvgIcon'
+import SvgIcon from '../../components/SvgIcon/SvgIcon.vue'
 
 import { isImageFile, isVideoFile } from '../../utils/media-file'
 

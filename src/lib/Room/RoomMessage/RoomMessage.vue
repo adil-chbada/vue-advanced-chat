@@ -223,14 +223,14 @@
 </template>
 
 <script>
-import SvgIcon from '../../../components/SvgIcon/SvgIcon'
-import FormatMessage from '../../../components/FormatMessage/FormatMessage'
+import SvgIcon from '../../../components/SvgIcon/SvgIcon.vue'
+import FormatMessage from '../../../components/FormatMessage/FormatMessage.vue'
 
-import MessageReply from './MessageReply/MessageReply'
-import MessageFiles from './MessageFiles/MessageFiles'
-import MessageActions from './MessageActions/MessageActions'
-import MessageReactions from './MessageReactions/MessageReactions'
-import AudioPlayer from './AudioPlayer/AudioPlayer'
+import MessageReply from './MessageReply/MessageReply.vue'
+import MessageFiles from './MessageFiles/MessageFiles.vue'
+import MessageActions from './MessageActions/MessageActions.vue'
+import MessageReactions from './MessageReactions/MessageReactions.vue'
+import AudioPlayer from './AudioPlayer/AudioPlayer.vue'
 
 import { messagesValidation } from '../../../utils/data-validation'
 import { isAudioFile } from '../../../utils/media-file'

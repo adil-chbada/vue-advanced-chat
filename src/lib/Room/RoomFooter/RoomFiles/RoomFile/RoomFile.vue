@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import Loader from '../../../../../components/Loader/Loader'
-import SvgIcon from '../../../../../components/SvgIcon/SvgIcon'
+import Loader from '../../../../../components/Loader/Loader.vue'
+import SvgIcon from '../../../../../components/SvgIcon/SvgIcon.vue'
 
 import { isImageFile, isVideoFile } from '../../../../../utils/media-file'
 

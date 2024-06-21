@@ -106,9 +106,9 @@
 </template>
 
 <script>
-import RoomsList from './RoomsList/RoomsList'
-import Room from './Room/Room'
-import MediaPreview from './MediaPreview/MediaPreview'
+import RoomsList from './RoomsList/RoomsList.vue'
+import Room from './Room/Room.vue'
+import MediaPreview from './MediaPreview/MediaPreview.vue'
 
 import locales from '../locales'
 import { defaultThemeStyles, cssThemeVars } from '../themes'

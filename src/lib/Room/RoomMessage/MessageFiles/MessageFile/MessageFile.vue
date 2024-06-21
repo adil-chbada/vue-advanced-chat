@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import Loader from '../../../../../components/Loader/Loader'
-import ProgressBar from '../../../../../components/ProgressBar/ProgressBar'
-import SvgIcon from '../../../../../components/SvgIcon/SvgIcon'
+import Loader from '../../../../../components/Loader/Loader.vue'
+import ProgressBar from '../../../../../components/ProgressBar/ProgressBar.vue'
+import SvgIcon from '../../../../../components/SvgIcon/SvgIcon.vue'
 
 import { isImageFile, isVideoFile } from '../../../../../utils/media-file'
 

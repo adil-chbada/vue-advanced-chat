@@ -3,8 +3,9 @@
 		class="vac-format-message-wrapper"
 		:class="{ 'vac-text-ellipsis': singleLine }"
 	>
-		<template v-for="(message, i) in parsedMessage" :key="i">
+		<template v-for="(message, i) in parsedMessage">
 			<div
+        :key="i"
 				v-if="message.markdown"
 				class="markdown"
 				@click="openTag"
@@ -12,6 +13,7 @@
 			/>
 			<div
 				v-else
+        :key="i"
 				class="vac-format-container"
 				:class="{ 'vac-text-ellipsis': singleLine }"
 			>
@@ -65,7 +67,7 @@
 </template>
 
 <script>
-import SvgIcon from '../SvgIcon/SvgIcon'
+import SvgIcon from '../SvgIcon/SvgIcon.vue'
 
 import markdown from '../../utils/markdown'
 import { IMAGE_TYPES } from '../../utils/constants'
