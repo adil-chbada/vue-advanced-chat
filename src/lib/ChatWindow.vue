@@ -25,9 +25,10 @@
 				@search-room="searchRoom"
 				@room-action-handler="roomActionHandler"
 			>
-				<template v-for="el in slots" #[el.slot]="data">
-					<slot :name="el.slot" v-bind="data" />
-				</template>
+
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</rooms-list>
 
 			<room
@@ -86,9 +87,9 @@
 				@typing-message="typingMessage"
 				@textarea-action-handler="textareaActionHandler"
 			>
-				<template v-for="el in slots" #[el.slot]="data">
-					<slot :name="el.slot" v-bind="data" />
-				</template>
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</room>
       <slot name="after-chat-container" v-bind="{room}" />
     </div>
@@ -98,9 +99,9 @@
 				:file="previewFile"
 				@close-media-preview="showMediaPreview = false"
 			>
-				<template v-for="el in slots" #[el.slot]="data">
-					<slot :name="el.slot" v-bind="data" />
-				</template>
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</media-preview>
 		</transition>
 	</div>
@@ -455,12 +456,12 @@ export default {
 		})
 	},
 
-	updated() {
-		const slots = document.querySelectorAll('[slot]')
-		if (this.slots.length !== slots.length) {
-			this.slots = slots
-		}
-	},
+	// updated() {
+    // const slots=    Object.keys(this.$slots).map((slot)=>({slot}))
+		// if (this.slots.length !== slots.length) {
+		// 	this.slots = slots
+		// }
+  // },
 
 	methods: {
 		castBoolean(val) {

@@ -26,9 +26,9 @@
 			@update-progress-time="progressTime = $event"
 			@hover-audio-progress="hoverAudioProgress = $event"
 		>
-			<template v-for="(idx, name) in $slots" #[name]="data">
-				<slot :name="name" v-bind="data" />
-			</template>
+      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <slot :name="name" v-bind="data" />
+      </template>
 		</audio-player>
 
 		<div v-else-if="isOtherFile" class="vac-file-container">

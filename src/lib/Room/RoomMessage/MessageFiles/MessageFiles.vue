@@ -9,9 +9,9 @@
 				:message-selection-enabled="messageSelectionEnabled"
 				@open-file="$emit('open-file', $event)"
 			>
-				<template v-for="(idx, name) in $slots" #[name]="data">
-					<slot :name="name" v-bind="data" />
-				</template>
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</message-file>
 		</div>
 

@@ -1,5 +1,6 @@
 <template>
 	<div class="vac-room-container">
+    <slot name="room-list-item" v-bind="{ room }">
 		<slot :name="'room-list-item_' + room.roomId">
 			<slot :name="'room-list-avatar_' + room.roomId">
 				<div
@@ -67,9 +68,9 @@
 						:link-options="linkOptions"
 						:single-line="true"
 					>
-						<template v-for="(idx, name) in $slots" #[name]="data">
-							<slot :name="name" v-bind="data" />
-						</template>
+            <template v-for="(i, name) in $scopedSlots" #[name]="data">
+              <slot :name="name" v-bind="data" />
+            </template>
 					</format-message>
 					<div
 						v-if="!room.lastMessage && typingUsers"
@@ -116,6 +117,7 @@
 					</div>
 				</div>
 			</div>
+		</slot>
 		</slot>
 	</div>
 </template>

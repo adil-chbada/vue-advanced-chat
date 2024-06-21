@@ -20,9 +20,9 @@
 				:message-id="message._id"
 				:style="{ top: `${imageResponsive.loaderTop}px` }"
 			>
-				<template v-for="(idx, name) in $slots" #[name]="data">
-					<slot :name="name" v-bind="data" />
-				</template>
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</loader>
 			<div
 				class="vac-message-image"

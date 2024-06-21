@@ -36,9 +36,9 @@
 			@message-selection-action-handler="messageSelectionActionHandler"
 			@cancel-message-selection="messageSelectionEnabled = false"
 		>
-			<template v-for="(i, name) in $slots" #[name]="data">
-				<slot :name="name" v-bind="data" />
-			</template>
+      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <slot :name="name" v-bind="data" />
+      </template>
 		</room-header>
 
 		<div
@@ -48,9 +48,9 @@
 			@scroll="onContainerScroll"
 		>
 			<loader :show="loadingMessages" type="messages">
-				<template v-for="(idx, name) in $slots" #[name]="data">
-					<slot :name="name" v-bind="data" />
-				</template>
+        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
 			</loader>
 			<div class="vac-messages-container">
 				<div :class="{ 'vac-messages-hidden': loadingMessages }">
@@ -71,9 +71,9 @@
 						id="infinite-loader-messages"
 					>
 						<loader :show="true" :infinite="true" type="infinite-messages">
-							<template v-for="(idx, name) in $slots" #[name]="data">
-								<slot :name="name" v-bind="data" />
-							</template>
+              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <slot :name="name" v-bind="data" />
+              </template>
 						</loader>
 					</div>
 					<transition-group :key="roomId" name="vac-fade-message" tag="span">
@@ -105,9 +105,9 @@
 								@select-message="selectMessage"
 								@unselect-message="unselectMessage"
 							>
-								<template v-for="(idx, name) in $slots" #[name]="data">
-									<slot :name="name" v-bind="data" />
-								</template>
+                <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                  <slot :name="name" v-bind="data" />
+                </template>
 							</room-message>
 						</div>
 					</transition-group>
@@ -164,9 +164,9 @@
 			@typing-message="$emit('typing-message', $event)"
 			@textarea-action-handler="$emit('textarea-action-handler', $event)"
 		>
-			<template v-for="(idx, name) in $slots" #[name]="data">
-				<slot :name="name" v-bind="data" />
-			</template>
+      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <slot :name="name" v-bind="data" />
+      </template>
 		</room-footer>
 	</div>
 </template>

@@ -1,9 +1,9 @@
 <template>
 	<div class="vac-room-file-container">
 		<loader :show="file.loading" type="room-file">
-			<template v-for="(idx, name) in $slots" #[name]="data">
-				<slot :name="name" v-bind="data" />
-			</template>
+      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <slot :name="name" v-bind="data" />
+      </template>
 		</loader>
 
 		<div

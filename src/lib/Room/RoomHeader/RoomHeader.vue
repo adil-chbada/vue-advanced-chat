@@ -1,6 +1,6 @@
 <template>
 	<div class="vac-room-header vac-app-border-b">
-		<slot name="room-header">
+		<slot name="room-header" v-bind="{ room, typingUsers, userStatus }">
 			<div class="vac-room-wrapper">
 				<transition name="vac-slide-up">
 					<div v-if="messageSelectionEnabled" class="vac-room-selection">
@@ -48,14 +48,16 @@
 						:class="{ 'vac-item-clickable': roomInfoEnabled }"
 						@click="$emit('room-info')"
 					>
-						<slot name="room-header-avatar">
+						<slot name="room-header-avatar" v-bind="{ room }">
 							<div
 								v-if="room.avatar"
 								class="vac-avatar"
 								:style="{ 'background-image': `url('${room.avatar}')` }"
 							/>
 						</slot>
-						<slot name="room-header-info">
+						<slot name="room-header-info"
+							v-bind="{ room, typingUsers, userStatus }"
+						>
 							<div class="vac-text-ellipsis">
 								<div class="vac-room-name vac-text-ellipsis">
 									{{ room.roomName }}
@@ -66,7 +68,7 @@
 								<div v-else class="vac-room-info vac-text-ellipsis">
 									{{ userStatus }}
 								</div>
-							</div>
+              </div>
 						</slot>
 					</div>
           <slot v-if="room.roomId" name="before-room-options" v-bind="{ room, typingUsers, userStatus }" />
@@ -99,7 +101,7 @@
 							</div>
 						</transition>
 					</slot>
-				</template>
+        </template>
 			</div>
 		</slot>
 	</div>

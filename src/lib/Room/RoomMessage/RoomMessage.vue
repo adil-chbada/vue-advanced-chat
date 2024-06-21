@@ -20,9 +20,9 @@
 					:link-options="linkOptions"
 					@open-user-tag="openUserTag"
 				>
-					<template v-for="(idx, name) in $slots" #[name]="data">
-						<slot :name="name" v-bind="data" />
-					</template>
+          <template v-for="(i, name) in $scopedSlots" #[name]="data">
+            <slot :name="name" v-bind="data" />
+          </template>
 				</format-message>
 			</slot>
 		</div>
@@ -87,9 +87,9 @@
 							:text-formatting="textFormatting"
 							:link-options="linkOptions"
 						>
-							<template v-for="(i, name) in $slots" #[name]="data">
-								<slot :name="name" v-bind="data" />
-							</template>
+              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <slot :name="name" v-bind="data" />
+              </template>
 						</message-reply>
 
 						<format-message
@@ -105,9 +105,9 @@
 							:link-options="linkOptions"
 							@open-user-tag="openUserTag"
 						>
-							<template v-for="(idx, name) in $slots" #[name]="data">
-								<slot :name="name" v-bind="data" />
-							</template>
+              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <slot :name="name" v-bind="data" />
+              </template>
 						</format-message>
 
 						<message-files
@@ -121,9 +121,9 @@
 							@open-file="openFile"
 							@open-user-tag="openUserTag"
 						>
-							<template v-for="(i, name) in $slots" #[name]="data">
-								<slot :name="name" v-bind="data" />
-							</template>
+              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <slot :name="name" v-bind="data" />
+              </template>
 						</message-files>
 
 						<template v-else>
@@ -134,9 +134,9 @@
 								@update-progress-time="progressTime = $event"
 								@hover-audio-progress="hoverAudioProgress = $event"
 							>
-								<template v-for="(i, name) in $slots" #[name]="data">
-									<slot :name="name" v-bind="data" />
-								</template>
+                <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                  <slot :name="name" v-bind="data" />
+                </template>
 							</audio-player>
 
 							<div v-if="!message.deleted" class="vac-progress-time">
@@ -184,9 +184,9 @@
 							@message-action-handler="messageActionHandler"
 							@send-message-reaction="sendMessageReaction"
 						>
-							<template v-for="(i, name) in $slots" #[name]="data">
-								<slot :name="name" v-bind="data" />
-							</template>
+              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <slot :name="name" v-bind="data" />
+              </template>
 						</message-actions>
 					</div>
 
