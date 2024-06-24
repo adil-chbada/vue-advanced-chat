@@ -36,7 +36,7 @@
 			@message-selection-action-handler="messageSelectionActionHandler"
 			@cancel-message-selection="messageSelectionEnabled = false"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="(i, name) in $scopedSlots" #[name]="data" :key="name">
         <slot :name="name" v-bind="data" />
       </template>
 		</room-header>
