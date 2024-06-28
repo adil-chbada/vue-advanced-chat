@@ -25,8 +25,7 @@
 				@search-room="searchRoom"
 				@room-action-handler="roomActionHandler"
 			>
-
-        <template v-for="(i, name) in $scopedSlots" #[name]="data" :key="name">
+        <template v-for="name in $$scopedSlots" #[name]="data">
           <slot :name="name" v-bind="data" />
         </template>
 			</rooms-list>
@@ -87,7 +86,7 @@
 				@typing-message="typingMessage"
 				@textarea-action-handler="textareaActionHandler"
 			>
-        <template v-for="(i, name) in $scopedSlots" #[name]="data" :key="name">
+        <template v-for="name in $$scopedSlots" #[name]="data">
           <slot :name="name" v-bind="data" />
         </template>
 			</room>
@@ -99,7 +98,7 @@
 				:file="previewFile"
 				@close-media-preview="showMediaPreview = false"
 			>
-        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <template v-for="name  in $$scopedSlots" #[name]="data">
           <slot :name="name" v-bind="data" />
         </template>
 			</media-preview>
@@ -233,10 +232,9 @@ export default {
 		'room-action-handler',
 		'message-selection-action-handler'
 	],
-
 	data() {
 		return {
-			slots: [],
+			// slots: [],
 			room: {},
 			loadingMoreRooms: false,
 			showRoomsList: true,

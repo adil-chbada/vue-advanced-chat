@@ -33,7 +33,7 @@
 					:message-selection-enabled="false"
 					class="vac-audio-reply"
 				>
-          <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <template v-for="name in $$scopedSlots" #[name]="data">
             <slot :name="name" v-bind="data" />
           </template>
 				</audio-player>

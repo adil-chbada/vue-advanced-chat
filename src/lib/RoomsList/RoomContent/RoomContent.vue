@@ -68,7 +68,7 @@
 						:link-options="linkOptions"
 						:single-line="true"
 					>
-            <template v-for="(i, name) in $scopedSlots" #[name]="data">
+            <template v-for="name in $$scopedSlots" #[name]="data">
               <slot :name="name" v-bind="data" />
             </template>
 					</format-message>

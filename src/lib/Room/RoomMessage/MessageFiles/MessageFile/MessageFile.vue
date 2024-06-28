@@ -20,7 +20,7 @@
 				:message-id="message._id"
 				:style="{ top: `${imageResponsive.loaderTop}px` }"
 			>
-        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <template v-for="name in $$scopedSlots" #[name]="data">
           <slot :name="name" v-bind="data" />
         </template>
 			</loader>

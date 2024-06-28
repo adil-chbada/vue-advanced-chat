@@ -11,7 +11,7 @@
 						:index="i"
 						@remove-file="$emit('remove-file', $event)"
 					>
-            <template v-for="(i, name) in $scopedSlots" #[name]="data">
+            <template v-for="name in $$scopedSlots" #[name]="data">
               <slot :name="name" v-bind="data" />
             </template>
 					</room-file>

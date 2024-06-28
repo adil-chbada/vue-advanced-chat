@@ -38,7 +38,7 @@
 			:link-options="linkOptions"
 			@reset-message="resetMessage"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="name in $$scopedSlots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
 		</room-message-reply>
@@ -48,7 +48,7 @@
 			@remove-file="removeFile"
 			@reset-message="resetMessage"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="name in $$scopedSlots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
 		</room-files>

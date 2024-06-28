@@ -26,7 +26,7 @@
 			@update-progress-time="progressTime = $event"
 			@hover-audio-progress="hoverAudioProgress = $event"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="name in $$scopedSlots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
 		</audio-player>

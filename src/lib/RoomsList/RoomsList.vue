@@ -19,14 +19,14 @@
 				@search-room="searchRoom"
 				@add-room="$emit('add-room')"
 			>
-          <template v-for="(i, name) in $scopedSlots" #[name]="data">
+          <template v-for="name in $$scopedSlots" #[name]="data">
             <slot :name="name" v-bind="data" />
           </template>
 			</rooms-search>
 		</slot>
 
 		<loader :show="loadingRooms" type="rooms">
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="name in $$scopedSlots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
 		</loader>
@@ -55,7 +55,7 @@
 					:room-actions="roomActions"
 					@room-action-handler="$emit('room-action-handler', $event)"
 				>
-            <template v-for="(i, name) in $scopedSlots" #[name]="data">
+            <template v-for="name in $$scopedSlots" #[name]="data">
               <slot :name="name" v-bind="data" />
             </template>
 				</room-content>
@@ -63,7 +63,7 @@
 			<transition name="vac-fade-message">
 				<div v-if="rooms.length && !loadingRooms" id="infinite-loader-rooms">
 					<loader :show="showLoader" :infinite="true" type="infinite-rooms">
-              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+              <template v-for="name in $$scopedSlots" #[name]="data">
                 <slot :name="name" v-bind="data" />
               </template>
 					</loader>

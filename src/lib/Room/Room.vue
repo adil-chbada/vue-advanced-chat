@@ -36,7 +36,7 @@
 			@message-selection-action-handler="messageSelectionActionHandler"
 			@cancel-message-selection="messageSelectionEnabled = false"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data" :key="name">
+      <template v-for="name in $scopedSlots" #[name]="data" :key="name">
         <slot :name="name" v-bind="data" />
       </template>
 		</room-header>
@@ -48,7 +48,7 @@
 			@scroll="onContainerScroll"
 		>
 			<loader :show="loadingMessages" type="messages">
-        <template v-for="(i, name) in $scopedSlots" #[name]="data">
+        <template v-for="name in $$scopedSlots" #[name]="data">
           <slot :name="name" v-bind="data" />
         </template>
 			</loader>
@@ -71,7 +71,7 @@
 						id="infinite-loader-messages"
 					>
 						<loader :show="true" :infinite="true" type="infinite-messages">
-              <template v-for="(i, name) in $scopedSlots" #[name]="data">
+              <template v-for="name in $$scopedSlots" #[name]="data">
                 <slot :name="name" v-bind="data" />
               </template>
 						</loader>
@@ -105,7 +105,7 @@
 								@select-message="selectMessage"
 								@unselect-message="unselectMessage"
 							>
-                <template v-for="(i, name) in $scopedSlots" #[name]="data">
+                <template v-for="name in $$scopedSlots" #[name]="data">
                   <slot :name="name" v-bind="data" />
                 </template>
 							</room-message>
@@ -164,7 +164,7 @@
 			@typing-message="$emit('typing-message', $event)"
 			@textarea-action-handler="$emit('textarea-action-handler', $event)"
 		>
-      <template v-for="(i, name) in $scopedSlots" #[name]="data">
+      <template v-for="name in $$scopedSlots" #[name]="data">
         <slot :name="name" v-bind="data" />
       </template>
 		</room-footer>
