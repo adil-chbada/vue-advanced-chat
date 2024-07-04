@@ -9,22 +9,24 @@
 		</div>
 
 		<div v-if="message.system" class="vac-card-info vac-card-system">
-			<slot :name="'message_' + message._id">
-				<format-message
-					:message-id="message._id"
-					:content="message.content"
-					:deleted="!!message.deleted"
-					:users="roomUsers"
-					:text-messages="textMessages"
-					:text-formatting="textFormatting"
-					:link-options="linkOptions"
-					@open-user-tag="openUserTag"
-				>
-          <template v-for="(i, name) in $scopedSlots" #[name]="data">
-            <slot :name="name" v-bind="data" />
-          </template>
-				</format-message>
-			</slot>
+      <slot name="system-message" v-bind="{message}" >
+        <slot :name="'message_' + message._id">
+          <format-message
+            :message-id="message._id"
+            :content="message.content"
+            :deleted="!!message.deleted"
+            :users="roomUsers"
+            :text-messages="textMessages"
+            :text-formatting="textFormatting"
+            :link-options="linkOptions"
+            @open-user-tag="openUserTag"
+          >
+            <template v-for="(i, name) in $scopedSlots" #[name]="data">
+              <slot :name="name" v-bind="data" />
+            </template>
+          </format-message>
+        </slot>
+      </slot>
 		</div>
 
 		<div
