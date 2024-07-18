@@ -71,7 +71,8 @@
 				:templates-text="templatesTextCasted"
 				:username-options="usernameOptionsCasted"
 				:emoji-data-source="emojiDataSource"
-				@toggle-rooms-list="toggleRoomsList"
+        :disable-inputs="disableInputs"
+        @toggle-rooms-list="toggleRoomsList"
 				@room-info="roomInfo"
 				@fetch-messages="fetchMessages"
 				@send-message="sendMessage"
@@ -209,7 +210,8 @@ export default {
 			type: [Object, String],
 			default: () => ({ minUsers: 3, currentUser: false })
 		},
-		emojiDataSource: { type: String, default: undefined }
+		emojiDataSource: { type: String, default: undefined },
+    disableInputs: { type: Boolean, required: true }
 	},
 
 	emits: [

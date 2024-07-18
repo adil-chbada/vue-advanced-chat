@@ -41,6 +41,10 @@
 	box-shadow: inset 0px 0px 0px 1px var(--chat-border-color-input-selected);
 }
 
+.vac-textarea-disabled {
+  background: #e5e5e5;
+}
+
 .vac-icon-textarea,
 .vac-icon-textarea-left {
 	display: flex;
@@ -59,7 +63,7 @@
 .vac-icon-textarea-left {
 	display: flex;
 	align-items: center;
-	margin-right: 5px;
+	margin: 5px 0;
 
 	svg,
 	.vac-wrapper {

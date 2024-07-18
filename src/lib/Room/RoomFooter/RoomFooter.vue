@@ -57,44 +57,16 @@
 			class="vac-box-footer"
 			:class="{ 'vac-box-footer-border': !files.length }"
 		>
-			<div v-if="showAudio && !files.length" class="vac-icon-textarea-left">
-				<template v-if="isRecording">
-					<div class="vac-svg-button vac-icon-audio-stop" @click="stopRecorder">
-						<slot name="audio-stop-icon">
-							<svg-icon name="close-outline" />
-						</slot>
-					</div>
-
-					<div class="vac-dot-audio-record" />
-
-					<div class="vac-dot-audio-record-time">
-						{{ recordedTime }}
-					</div>
-
-					<div
-						class="vac-svg-button vac-icon-audio-confirm"
-						@click="toggleRecorder(false)"
-					>
-						<slot name="audio-check-icon">
-							<svg-icon name="checkmark" />
-						</slot>
-					</div>
-				</template>
-
-				<div v-else class="vac-svg-button" @click="toggleRecorder(true)">
-					<slot name="microphone-icon">
-						<svg-icon name="microphone" class="vac-icon-microphone" />
-					</slot>
-				</div>
-			</div>
-
+      <slot name="before-message-textarea" v-bind="{ room }" />
 			<textarea
 				id="roomTextarea"
 				ref="roomTextarea"
 				:placeholder="textMessages.TYPE_MESSAGE"
+        :disabled="disableInputs"
 				class="vac-textarea"
 				:class="{
-					'vac-textarea-outline': editedMessage._id
+					'vac-textarea-outline': editedMessage._id,
+					'vac-textarea-disabled': disableInputs,
 				}"
 				:style="{
 					'min-height': `20px`,
@@ -109,7 +81,36 @@
 				@keydown.up="updateActiveUpOrDown($event, -1)"
 				@keydown.down="updateActiveUpOrDown($event, 1)"
 			/>
+      <div v-if="showAudio && !files.length && !disableInputs" class="vac-icon-textarea-left">
+        <template v-if="isRecording">
+          <div class="vac-svg-button vac-icon-audio-stop" @click="stopRecorder">
+            <slot name="audio-stop-icon">
+              <svg-icon name="close-outline" />
+            </slot>
+          </div>
 
+          <div class="vac-dot-audio-record" />
+
+          <div class="vac-dot-audio-record-time">
+            {{ recordedTime }}
+          </div>
+
+          <div
+            class="vac-svg-button vac-icon-audio-confirm"
+            @click="toggleRecorder(false)"
+          >
+            <slot name="audio-check-icon">
+              <svg-icon name="checkmark" />
+            </slot>
+          </div>
+        </template>
+
+        <div v-else class="vac-svg-button" @click="toggleRecorder(true)">
+          <slot name="microphone-icon">
+            <svg-icon name="microphone" class="vac-icon-microphone" />
+          </slot>
+        </div>
+      </div>
 			<div class="vac-icon-textarea">
 				<div
 					v-if="editedMessage._id"
@@ -121,7 +122,7 @@
 					</slot>
 				</div>
 
-				<div v-if="showEmojis" v-click-outside="() => (emojiOpened = false)">
+				<div v-if="showEmojis && !disableInputs" v-click-outside="() => (emojiOpened = false)">
 					<slot
 						name="emoji-picker"
 						v-bind="{ emojiOpened }"
@@ -141,7 +142,7 @@
 					</slot>
 				</div>
 
-				<div v-if="showFiles" class="vac-svg-button" @click="launchFilePicker">
+				<div v-if="showFiles && !disableInputs" class="vac-svg-button" @click="launchFilePicker">
 					<slot name="paperclip-icon">
 						<svg-icon name="paperclip" />
 					</slot>
@@ -248,8 +249,9 @@ export default {
 		initReplyMessage: { type: Object, default: null },
 		initEditMessage: { type: Object, default: null },
 		droppedFiles: { type: Array, default: null },
-		emojiDataSource: { type: String, default: undefined }
-	},
+		emojiDataSource: { type: String, default: undefined },
+    disableInputs: { type: Boolean, required: true },
+  },
 
 	emits: [
 		'edit-message',
