@@ -238,7 +238,7 @@ export default {
 
 	data() {
 		return {
-			slots: [],
+			// slots: [],
 			room: {},
 			loadingMoreRooms: false,
 			showRoomsList: true,
